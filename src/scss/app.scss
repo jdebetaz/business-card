@@ -1,4 +1,14 @@
-@import url(https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&display=swap);
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+    @return $string;
+}
+
+$font: "Nunito Sans";
+
+@import url('https://fonts.googleapis.com/css2?family=#{str-replace($font, ' ', '+')}:wght@300;400;600;800&display=swap');
 
 :root {
     --accent-color: #f44336;
@@ -10,9 +20,10 @@
 }
 
 html, body {
-    margin:0;
-    font-family: "Nunito Sans", sans-serif;
-
+    margin: 0;
+    font-family: "#{$font}", sans-serif;
+    font-size: 16px;
+    background: #e1e1e1;
 }
 
 img {
@@ -20,15 +31,37 @@ img {
     height: auto;
 }
 
+a {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+}
 
-
-.card {
+.business-card {
     overflow: hidden;
-    overflow-y: auto;
     background: var(--background);
     color: #ffffff;
-    scrollbar-width: none;
-    height: 100vh;
+    aspect-ratio: 628/1000;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.business-card-content {
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: inherit transparent;
+}
+
+.feather {
+    width: 24px;
+    height: 24px;
+    stroke: var(--accent-color);
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: #ffffff;
 }
 
 .header {
@@ -47,17 +80,16 @@ img {
         img {
             max-width: 500px;
         }
-
     }
 
     .logo {
         position: absolute;
-        right: 1.5rem;
-        bottom: .75rem;
-        width: 72px;
-        height: 72px;
+        right: 1.2rem;
+        bottom: 0;
+        width: 64px;
+        height: 64px;
         overflow: hidden;
-
+        border-radius: 16px;
     }
 }
 
@@ -83,7 +115,6 @@ img {
             font-weight: 600;
             font-size: 1.25rem;
             line-height: 2rem;
-
         }
 
         .service {
@@ -123,7 +154,7 @@ img {
                 width: 42px;
                 height: 42px;
                 background: var(--accent-color);
-                border-radius: 42px;
+                border-radius: 50%;
                 margin-right: 0.8125rem;
                 color: #ffffff;
             }
@@ -139,20 +170,21 @@ img {
     }
 }
 
+@import 'modules/btn';
 @import 'modules/wave';
 
 @media only screen and (min-width: 720px) {
     #app {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         height: 100vh;
         width: 100vw;
     }
 
-    .card {
-        width: 500px;
-        max-height: 75vh;
+    .business-card {
+        width: 20vw;
         border-radius: 16px;
     }
 }

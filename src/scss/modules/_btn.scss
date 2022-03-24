@@ -1,0 +1,25 @@
+.buttons {
+    width: 20vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 32px;
+    margin-top: 32px;
+    height: 64px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    font-weight: 600;
+    background: #fff;
+    width: 48%;
+
+    .feather {
+        margin-right: 16px;
+        fill: none;
+        stroke-width: 2;
+    }
+}
