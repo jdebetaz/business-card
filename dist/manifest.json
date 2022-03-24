@@ -1,0 +1,10 @@
+{
+  "js/app.js": {
+    "file": "app.js",
+    "src": "js/app.js",
+    "isEntry": true,
+    "css": [
+      "app.css"
+    ]
+  }
+}

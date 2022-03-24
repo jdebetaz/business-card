@@ -7,16 +7,18 @@ const config = {
     build: {
         polyfillDynamicImport: false,
         assetsDir: '',
-        manifest: false,
+        manifest: true,
         outDir: '../dist/',
+        emptyOutDir: false,
         rollupOptions: {
             output: {
-                manualChunks: undefined, // Désactive la séparation du vendor
-                assetFileNames: "[name].[ext]",
-                entryFileNames: "[name].js"
+                manualChunks: undefined,
+                entryFileNames: `[name].js`,
+                chunkFileNames: `[name].js`,
+                assetFileNames: `[name].[ext]`
             },
             input: {
-                app: resolve(__dirname, 'src/js/app.js'),
+                "app": resolve(__dirname, 'src/js/app.js'),
             }
         },
     }
